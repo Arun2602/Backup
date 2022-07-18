@@ -1,0 +1,74 @@
+Started by user [8mha:////4Ph0GlZVk10KGloS5Uq2LCVyt6xh3/vHn2c5J+LK6CE0AAAAlx+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzeEgZu/dLi1CL9xJTczDwACG0V4sAAAAA=[0mJenkins Admin
+Running as SYSTEM
+Agent [8mha:////4LZDORZ+fSIunvllXprd/+7kDrs/veWDgw3su2rxBcJgAAAAox+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzeEgZx/eT83ILSktQi/ZTUtMTSnBLd9OJCCxMAoRaaeMwAAAA=[0mdefault-gsq84 is provisioned from template default
+---
+apiVersion: "v1"
+kind: "Pod"
+metadata:
+  labels:
+    jenkins/jenkins-jenkins-agent: "true"
+    jenkins/label-digest: "500b4f18aee87616849e4f4c2435020898e34aa0"
+    jenkins/label: "jenkins-jenkins-agent"
+  name: "default-gsq84"
+  namespace: "devops"
+spec:
+  containers:
+  - args:
+    - "********"
+    - "default-gsq84"
+    env:
+    - name: "JENKINS_SECRET"
+      value: "********"
+    - name: "JENKINS_TUNNEL"
+      value: "jenkins-agent.devops.svc.cluster.local:50000"
+    - name: "JENKINS_AGENT_NAME"
+      value: "default-gsq84"
+    - name: "JENKINS_NAME"
+      value: "default-gsq84"
+    - name: "JENKINS_AGENT_WORKDIR"
+      value: "/home/jenkins/agent"
+    - name: "JENKINS_URL"
+      value: "http://jenkins.devops.svc.cluster.local:8080/"
+    image: "jenkins/inbound-agent:4.11.2-4"
+    imagePullPolicy: "IfNotPresent"
+    name: "jnlp"
+    resources:
+      limits:
+        memory: "512Mi"
+        cpu: "512m"
+      requests:
+        memory: "512Mi"
+        cpu: "512m"
+    tty: false
+    volumeMounts:
+    - mountPath: "/home/jenkins/agent"
+      name: "workspace-volume"
+      readOnly: false
+    workingDir: "/home/jenkins/agent"
+  nodeSelector:
+    kubernetes.io/os: "linux"
+  restartPolicy: "Never"
+  serviceAccountName: "default"
+  volumes:
+  - emptyDir:
+      medium: ""
+    name: "workspace-volume"
+
+Building remotely on [8mha:////4LZDORZ+fSIunvllXprd/+7kDrs/veWDgw3su2rxBcJgAAAAox+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzeEgZx/eT83ILSktQi/ZTUtMTSnBLd9OJCCxMAoRaaeMwAAAA=[0mdefault-gsq84 (jenkins-jenkins-agent) in workspace /home/jenkins/agent/workspace/backup
+The recommended git tool is: NONE
+using credential 638dacd9-a923-4ae6-b6cc-74459244e5e4
+Cloning the remote Git repository
+Cloning repository https://github.com/Arun2602/Backup.git
+ > git init /home/jenkins/agent/workspace/backup # timeout=10
+Fetching upstream changes from https://github.com/Arun2602/Backup.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.30.2'
+using GIT_ASKPASS to set credentials 
+ > git fetch --tags --force --progress -- https://github.com/Arun2602/Backup.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url https://github.com/Arun2602/Backup.git # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+Avoid second fetch
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > git rev-parse origin/master^{commit} # timeout=10
+ERROR: Couldn't find any revision to build. Verify the repository and branch configuration for this job.
+Finished: FAILURE
